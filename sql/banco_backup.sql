@@ -134,7 +134,6 @@ INSERT INTO `clientes` VALUES (2, 'Fernanda Rocha', '(11) 97777-1002', 'fernanda
 INSERT INTO `clientes` VALUES (3, 'Patricia Gomes', '(11) 97777-1003', 'patricia@gmail.com', '1995-09-25', 'Cliente recorrente', 1, '2026-05-12 22:17:55', '2026-05-12 22:17:55');
 INSERT INTO `clientes` VALUES (4, 'Juliana Costa', '(11) 97777-1004', 'juliana@gmail.com', '1990-01-18', 'Tem sensibilidade a determinados produtos', 1, '2026-05-12 22:17:55', '2026-05-12 22:17:55');
 INSERT INTO `clientes` VALUES (5, 'Camila Nunes', '(11) 97777-1005', 'camila@gmail.com', '1998-07-07', NULL, 1, '2026-05-12 22:17:55', '2026-05-12 22:17:55');
-INSERT INTO `clientes` VALUES (7, 'Leonardo Ribeiro', '13996181901', 'leorbmello@gmail.com', NULL, '1234', 1, '2026-05-17 18:00:31', '2026-05-17 18:00:37');
 
 -- ----------------------------
 -- Table structure for horarios_trabalho_profissional
