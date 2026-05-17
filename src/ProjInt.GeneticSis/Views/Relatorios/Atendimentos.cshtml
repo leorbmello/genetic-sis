@@ -1,0 +1,89 @@
+﻿@model ProjInt.GeneticSis.Models.RelatorioAtendimentosViewModel
+@{
+    Layout = "_Layout";
+}
+
+<div class="print-container">
+    <div class="report-print-header">
+        <h2>
+            📅 Relatório de Atendimentos
+        </h2>
+
+        <p>
+            Período: @Model.Inicio.ToString("dd/MM/yyyy") até @Model.Fim.ToString("dd/MM/yyyy")
+        </p>
+    </div>
+
+    <div class="report-summary">
+        <div class="summary-card">
+            <div class="summary-title">
+                Total
+            </div>
+
+            <div class="summary-value">
+                @Model.TotalAtendimentos
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-title">
+                Concluídos
+            </div>
+
+            <div class="summary-value">
+                @Model.TotalConcluidos
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-title">
+                Cancelados
+            </div>
+
+            <div class="summary-value">
+                @Model.TotalCancelados
+            </div>
+        </div>
+
+        <div class="report-table-wrapper">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Cliente</th>
+                        <th>Serviço</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Agendamentos)
+                    {
+                        <tr>
+                            <td>
+                                @item.DataAtendimento.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @item.HoraInicio.ToString("HH:mm")
+                            </td>
+                            <td>
+                                @item.Cliente.Nome
+                            </td>
+                            <td>
+                                @item.Servico.Nome
+                            </td>
+                            <td>
+                                @item.Status
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <button class="btn-print" onclick="window.print()">
+            🖨️ Imprimir
+        </button>
+
+    </div>
+</div>

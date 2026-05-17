@@ -1,0 +1,129 @@
+﻿@model ProjInt.GeneticSis.Models.AgendaViewModel;
+
+@{
+    ViewData["Title"] = "Agenda";
+}
+
+<div class="agenda-header">
+    <h2>
+        📅 Agenda
+    </h2>
+    <p>
+        Selecione o profissional e a data
+    </p>
+</div>
+
+<form method="get" class="agenda-filters">
+    <div class="mb-3">
+        <label class="form-label">
+            Profissional
+        </label>
+        <select name="profissionalId" class="form-select agenda-input" onchange="this.form.submit()">
+            @foreach (var item in Model.Profissionais)
+            {
+                <option value="@item.Id" selected="@(item.Id == Model.ProfissionalId)">
+                    @item.Nome
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">
+            Data
+        </label>
+
+        <input type="date"
+               name="data"
+               class="form-control agenda-input"
+               value="@Model.Data.ToString("yyyy-MM-dd")"
+               onchange="this.form.submit()" />
+
+    </div>
+</form>
+
+<div class="agenda-list">
+    @foreach (var item in Model.Horarios)
+    {
+        if (item.Disponivel)
+        {
+            <div class="agenda-slot free-slot">
+                <div class="slot-hour">
+                    @item.Hora.ToString("HH:mm")
+                </div>
+
+                <div class="slot-actions">
+                    <a asp-action="Novo"
+                           asp-route-profissionalId="@Model.ProfissionalId"
+                           asp-route-data="@Model.Data.ToString("yyyy-MM-dd")"
+                           asp-route-hora="@item.Hora.ToString("HH:mm:ss")"
+                           class="slot-action">
+                        Novo Agendamento
+                    </a>
+
+                    @if (User.IsInRole("PROFISSIONAL") && Model.ProfissionalId == ulong.Parse(User.FindFirst("ProfissionalId")!.Value))
+                    {
+                        <form method="post" asp-action="BloquearHorario">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="profissionalId" value="@Model.ProfissionalId" />
+                            <input type="hidden" name="data" value="@Model.Data.ToString("yyyy-MM-dd")" />
+                            <input type="hidden" name="hora" value="@item.Hora.ToString("HH:mm:ss")" />
+                            <button class="slot-block">
+                                Bloquear
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="agenda-slot busy-slot">
+                <div class="slot-hour">
+                    @item.Hora.ToString("HH:mm")
+                </div>
+
+                <div class="slot-content">
+                    <div class="slot-client">
+                        @if (item.Agendamento!.Status == "BLOQUEADO")
+                        {
+                            <span>
+                                Horário Bloqueado
+                            </span>
+                        }
+                        else
+                        {
+                            @item.Agendamento.Cliente?.Nome
+                        }
+                    </div>
+
+                    <div class="slot-service">
+                        @if (item.Agendamento.Status == "BLOQUEADO")
+                        {
+                            <span>
+                                Bloqueio Manual
+                            </span>
+                        }
+                        else
+                        {
+                            @item.Agendamento.Servico?.Nome
+                        }
+                    </div>
+                </div>
+
+                @if (User.IsInRole("PROFISSIONAL") && Model.ProfissionalId == ulong.Parse(User.FindFirst("ProfissionalId")!.Value))
+                {
+                    <form method="post" asp-action="CancelarAgendamento" class="cancel-form">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@item.Agendamento.Id" />
+                        <input type="hidden" name="profissionalId" value="@Model.ProfissionalId" />
+                        <input type="hidden" name="data" value="@Model.Data.ToString("yyyy-MM-dd")" />
+                        <button class="slot-cancel">
+                            Cancelar
+                        </button>
+                    </form>
+                }
+            </div>
+        }
+    }
+</div>

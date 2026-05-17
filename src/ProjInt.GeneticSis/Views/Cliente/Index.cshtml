@@ -1,0 +1,56 @@
+﻿@model List<ProjInt.GeneticSis.DAL.Entities.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<div class="page-header">
+    <div>
+        <h2>
+            👥 Clientes
+        </h2>
+
+        <p>
+            Cadastro e gerenciamento
+        </p>
+    </div>
+
+    <a asp-action="Novo" class="btn-new">
+        Novo
+    </a>
+</div>
+
+<form method="get" class="search-form">
+    <input type="text"
+           name="busca"
+           class="search-input"
+           placeholder="Buscar cliente..." />
+</form>
+
+<div class="client-list">
+    @foreach (var item in Model)
+    {
+        <div class="client-card">
+            <div class="client-info">
+                <div class="client-name">
+                    @item.Nome
+                </div>
+
+                <div class="client-phone">
+                    📞 @item.Celular
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(item.Email))
+                {
+                    <div class="client-email">
+                        ✉️ @item.Email
+                    </div>
+                }
+            </div>
+
+            <a asp-action="Editar" asp-route-id="@item.Id" class="btn-client-edit">
+                Editar
+            </a>
+        </div>
+    }
+</div>

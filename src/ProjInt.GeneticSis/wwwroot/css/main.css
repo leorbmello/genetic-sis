@@ -1,0 +1,134 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff5f8;
+    font-family: 'Segoe UI', sans-serif;
+    color: #4b4453;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+input, button {
+    min-height: 48px;
+}
+
+.topbar {
+    height: 64px;
+    background: linear-gradient( 135deg, #ff7eb3, #d63384 );
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    box-shadow: 0 4px 14px rgba(214, 51, 132, 0.25);
+}
+
+.menu-button {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 28px;
+}
+
+.topbar-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.topbar-user {
+    font-size: 14px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 260px;
+    height: 100vh;
+    background: white;
+    z-index: 1200;
+    transition: 0.25s;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    padding-top: 80px;
+}
+
+    .sidebar.active {
+        left: 0;
+    }
+
+.menu-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    padding: 16px 20px;
+    color: #4b4453;
+    text-decoration: none;
+    font-size: 16px;
+    border-bottom: 1px solid #f6dce8;
+}
+
+    .menu-item:hover {
+        background: #fff1f7;
+    }
+
+.menu-logout {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+    padding: 16px 20px;
+    color: #dc3545;
+    font-size: 16px;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+    z-index: 1150;
+}
+
+    .overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+.main-content {
+    padding: 84px 16px 24px 16px;
+}

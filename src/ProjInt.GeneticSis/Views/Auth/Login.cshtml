@@ -1,0 +1,68 @@
+﻿@model ProjInt.GeneticSis.Models.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - Agenda Estética</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/auth.css" />
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo-area">
+                <div class="logo-circle">
+                    💅
+                </div>
+
+                <h1>Agenda Estética</h1>
+                <p>
+                    Entre para acessar sua agenda
+                </p>
+            </div>
+
+            <form asp-action="Login" method="post">
+
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger small mb-3">
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">
+                        E-mail
+                    </label>
+
+                    <input asp-for="Email" class="form-control input-custom" placeholder="Digite seu e-mail" />
+                    <span asp-validation-for="Email" class="text-danger small">
+                    </span>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="Senha" class="form-label">Senha</label>
+                    <input asp-for="Senha" type="password" class="form-control input-custom" placeholder="Digite sua senha" />
+                    <span asp-validation-for="Senha" class="text-danger small">
+                    </span>
+
+                </div>
+
+                <div class="form-check mb-4">
+                    <input asp-for="LembrarMe" class="form-check-input" />
+                    <label asp-for="LembrarMe" class="form-check-label">Continuar conectado</label>
+                </div>
+
+                <button type="submit" class="btn btn-login w-100">Entrar</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>

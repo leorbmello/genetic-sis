@@ -1,0 +1,37 @@
+﻿@using System.Security.Claims
+
+<nav class="menu-nav">
+    <a asp-controller="Home" asp-action="Index" class="menu-item">
+        🏠 Dashboard
+    </a>
+
+    <a asp-controller="Agenda" asp-action="Index" class="menu-item">
+        📅 Agenda
+    </a>
+
+    <a asp-controller="Cliente" asp-action="Index" class="menu-item">
+        👥 Clientes
+    </a>
+
+    <a asp-controller="Relatorios" asp-action="Index" class="menu-item">
+        📊 Relatórios
+    </a>
+
+    @if (User.IsInRole("ADMIN"))
+    {
+        <a href="#" class="menu-item">
+            💼 Profissionais
+        </a>
+
+        <a href="#" class="menu-item">
+            🔐 Usuários
+        </a>
+    }
+
+    <form asp-controller="Auth" asp-action="Logout" method="post">
+        @Html.AntiForgeryToken()
+        <button class="menu-logout">
+            🚪 Sair
+        </button>
+    </form>
+</nav>

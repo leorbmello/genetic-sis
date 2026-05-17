@@ -1,0 +1,82 @@
+﻿@model ProjInt.GeneticSis.Models.RelatorioFinanceiroViewModel
+
+<div class="print-container">
+    <div class="report-print-header">
+        <h2>
+            💰 Relatório Financeiro
+        </h2>
+
+        <p>
+            Período: @Model.Inicio.ToString("dd/MM/yyyy") até @Model.Fim.ToString("dd/MM/yyyy")
+        </p>
+    </div>
+
+    <div class="report-summary">
+        <div class="summary-card">
+            <div class="summary-title">
+                Faturamento
+            </div>
+
+            <div class="summary-value">
+                @Model.FaturamentoTotal.ToString("C")
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-title">
+                Ticket Médio
+            </div>
+
+            <div class="summary-value">
+                @Model.TicketMedio.ToString("C")
+            </div>
+        </div>
+
+        <div class="summary-card">
+
+            <div class="summary-title">
+                Atendimentos
+            </div>
+
+            <div class="summary-value">
+                @Model.TotalAtendimentos
+            </div>
+        </div>
+    </div>
+    <div class="report-table-wrapper">
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Cliente</th>
+                    <th>Serviço</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.Agendamentos)
+                {
+                    <tr>
+                        <td>
+                            @item.DataAtendimento.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @item.Cliente.Nome
+                        </td>
+                        <td>
+                            @item.Servico.Nome
+                        </td>
+                        <td>
+                            @((item.ValorCobrado ?? 0).ToString("C"))
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <button class="btn-print" onclick="window.print()">
+        🖨️ Imprimir
+    </button>
+</div>

@@ -1,0 +1,73 @@
+﻿@using ProjInt.GeneticSis.Models
+@model List<DashboardCardViewModel>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="dashboard-header">
+    <h2>
+        ✨ Agenda de Hoje
+    </h2>
+    <p>
+        @DateTime.Now.ToString("dddd, dd 'de' MMMM", new System.Globalization.CultureInfo("pt-BR"))
+    </p>
+    <form method="get"
+          class="dashboard-date-form">
+
+        <input type="date"
+               name="data"
+               class="dashboard-date-input"
+               value="@(((DateOnly)ViewBag.DataSelecionada).ToString("yyyy-MM-dd"))"
+               onchange="this.form.submit()" />
+
+    </form>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="empty-dashboard">
+        ✨ Nenhum atendimento agendado para hoje.
+    </div>
+}
+else
+{
+    <div class="dashboard-cards">
+        @foreach (var item in Model)
+        {
+            <div class="appointment-card card-@item.StatusVisual">
+                <div class="card-hour">
+                    @item.HoraInicio.ToString("HH:mm")
+                </div>
+
+                <div class="card-content">
+                    <div class="card-client">
+                        @item.Cliente
+                    </div>
+
+                    <div class="card-service">
+                        @item.Servico
+                    </div>
+
+                    <div class="card-professional">
+                        👩‍⚕️ @item.Profissional
+                    </div>
+                </div>
+
+                @if (item.StatusVisual == "progress")
+                {
+                    <div class="card-status status-blue">
+                        Em Atendimento
+                    </div>
+                }
+
+                @if (item.StatusVisual == "late")
+                {
+                    <div class="card-status status-red">
+                        Atrasado
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}

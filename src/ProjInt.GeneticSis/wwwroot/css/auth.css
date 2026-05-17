@@ -1,0 +1,109 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background: #fff5f8;
+    font-family: 'Segoe UI', sans-serif;
+    color: #4b4453;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(214, 51, 132, 0.12);
+}
+
+.logo-area {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.logo-circle {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 16px auto;
+    border-radius: 50%;
+    background: linear-gradient( 135deg, #ff7eb3, #d63384 );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    color: white;
+    box-shadow: 0 8px 20px rgba(214, 51, 132, 0.25);
+}
+
+.logo-area h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #d63384;
+}
+
+.logo-area p {
+    margin: 0;
+    color: #8b7180;
+    font-size: 15px;
+}
+
+.input-custom {
+    height: 52px;
+    border-radius: 14px;
+    border: 1px solid #f0d3df;
+    padding-left: 16px;
+    font-size: 15px;
+}
+
+    .input-custom:focus {
+        border-color: #d63384;
+        box-shadow: 0 0 0 0.2rem rgba(214, 51, 132, 0.15);
+    }
+
+.btn-login {
+    height: 52px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient( 135deg, #ff5fa2, #d63384 );
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+    .btn-login:hover {
+        transform: translateY(-1px);
+        background: linear-gradient( 135deg, #f94c96, #c22574 );
+        color: white;
+    }
+
+.form-check-input:checked {
+    background-color: #d63384;
+    border-color: #d63384;
+}
+
+@media (max-width: 480px) {
+
+    .login-card {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .logo-circle {
+        width: 80px;
+        height: 80px;
+        font-size: 36px;
+    }
+
+    .logo-area h1 {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Relatórios";
+}
+
+<div class="reports-header">
+    <h2>
+        📊 Relatórios
+    </h2>
+
+    <p>
+        Selecione um relatório para visualizar
+    </p>
+</div>
+
+<div class="report-list">
+    <!-- FATURAMENTO -->
+    <div class="report-card">
+        <button class="report-toggle">
+            <div>
+                <div class="report-title">
+                    💰 Financeiro
+                </div>
+
+                <div class="report-subtitle">
+                    Receita por período
+                </div>
+            </div>
+
+            <span class="report-arrow">
+                ▼
+            </span>
+        </button>
+
+        <div class="report-content">
+            <form method="get" asp-action="Financeiro">
+                <div class="mb-3">
+                    <label class="form-label">
+                        Data Inicial
+                    </label>
+
+                    <input type="date" name="inicio" class="form-control report-input" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Data Final
+                    </label>
+
+                    <input type="date" name="fim" class="form-control report-input" required />
+                </div>
+
+                <button class="btn-report">
+                    Gerar Relatório
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ATENDIMENTOS -->
+    <div class="report-card">
+        <button class="report-toggle">
+            <div>
+                <div class="report-title">
+                    📅 Atendimentos
+                </div>
+
+                <div class="report-subtitle">
+                    Atendimentos realizados
+                </div>
+            </div>
+
+            <span class="report-arrow">
+                ▼
+            </span>
+        </button>
+
+        <div class="report-content">
+            <form method="get" asp-action="Atendimentos">
+                <div class="mb-3">
+                    <label class="form-label">
+                        Data Inicial
+                    </label>
+                    <input type="date" name="inicio" class="form-control report-input" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Data Final
+                    </label>
+
+                    <input type="date" name="fim" class="form-control report-input" required />
+                </div>
+
+                <button class="btn-report">
+                    Gerar Relatório
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.report-toggle')
+            .forEach(button => {
+                button.addEventListener('click', () => {
+                    const card = button.parentElement;
+                    card.classList.toggle('active');
+                });
+            });
+    </script>
+}

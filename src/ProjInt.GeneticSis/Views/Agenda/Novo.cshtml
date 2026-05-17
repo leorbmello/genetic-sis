@@ -1,0 +1,82 @@
+﻿@model ProjInt.GeneticSis.Models.NovoAgendamentoViewModel
+@{
+    ViewData["Title"] = "Novo Agendamento";
+}
+
+<div class="agenda-header">
+    <h2>
+        ✨ Novo Agendamento
+    </h2>
+    <p>
+        @Model.Data.ToString("dd/MM/yyyy") às @Model.HoraInicio.ToString("HH:mm")
+    </p>
+</div>
+
+<form method="post" class="new-appointment-form">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="ProfissionalId" />
+    <input type="hidden" asp-for="Data" />
+    <input type="hidden" asp-for="HoraInicio" />
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3">
+    </div>
+
+    <!-- CLIENTE -->
+    <div class="mb-3">
+        <label class="form-label">
+            Cliente
+        </label>
+
+        <select asp-for="ClienteId" class="form-select agenda-input">
+            <option value="">
+                Selecione...
+            </option>
+
+            @foreach (var item in Model.Clientes)
+            {
+                <option value="@item.Id">
+                    @item.Nome
+                </option>
+            }
+        </select>
+    </div>
+
+    <!-- SERVIÇO -->
+
+    <div class="mb-3">
+        <label class="form-label">
+            Serviço
+        </label>
+
+        <select asp-for="ServicoId" class="form-select agenda-input">
+            <option value="">
+                Selecione...
+            </option>
+
+            @foreach (var item in Model.Servicos)
+            {
+                <option value="@item.Id">
+                    @item.Nome
+                </option>
+            }
+        </select>
+    </div>
+
+    <!-- OBS -->
+    <div class="mb-4">
+        <label class="form-label">
+            Observações
+        </label>
+        <textarea asp-for="Observacoes" rows="4" class="form-control agenda-textarea">
+        </textarea>
+
+    </div>
+    <button class="btn-save-appointment">
+        Salvar Agendamento
+    </button>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

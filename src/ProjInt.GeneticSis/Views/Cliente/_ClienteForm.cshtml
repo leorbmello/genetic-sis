@@ -1,0 +1,70 @@
+﻿@model ProjInt.GeneticSis.Models.ClienteFormViewModel
+
+<div class="agenda-header">
+    <h2>
+        👤 Cliente
+    </h2>
+
+    <p>
+        Cadastro & Edição de clientes
+    </p>
+</div>
+
+<form method="post" class="new-appointment-form">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3">
+    </div>
+
+    <!-- NOME -->
+    <div class="mb-3">
+        <label class="form-label">
+            Nome
+        </label>
+        <input asp-for="Nome" class="form-control agenda-input" />
+        <span asp-validation-for="Nome"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <!-- TELEFONE -->
+    <div class="mb-3">
+        <label class="form-label">
+            Telefone
+        </label>
+
+        <input asp-for="Telefone" class="form-control agenda-input" />
+        <span asp-validation-for="Telefone"
+              class="text-danger">
+        </span>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="mb-3">
+        <label class="form-label">
+            Email
+        </label>
+
+        <input asp-for="Email" class="form-control agenda-input" />
+    </div>
+
+    <!-- OBS -->
+    <div class="mb-4">
+        <label class="form-label">
+            Observações
+        </label>
+
+        <textarea asp-for="Observacoes" rows="4" class="form-control agenda-textarea">
+        </textarea>
+    </div>
+
+    <button class="btn-save-appointment">
+        Salvar Cliente
+    </button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

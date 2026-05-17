@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../ProjInt.GeneticSis.DAL/ProjInt.GeneticSis.DAL.csproj" />
+  <Project Path="../ProjInt.GeneticSis.IoC/ProjInt.GeneticSis.IoC.csproj" />
+  <Project Path="../ProjInt.GeneticSis.Shared/ProjInt.GeneticSis.Shared.csproj" />
+  <Project Path="ProjInt.GeneticSis.csproj" />
+</Solution>
